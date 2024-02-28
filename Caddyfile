@@ -1,0 +1,23 @@
+{
+	http_port    8080
+	https_port   9090
+}
+
+localhost {
+    respond "Hello, world from caddy!"
+}
+
+localhost:2016 {
+    handle_path /api/* {
+        reverse_proxy 127.0.0.1:3000
+    }
+
+    handle {
+        root * /home/nico/Projects/Caddy/static-file-with-proxy/static
+        file_server
+    }
+}
+
+
+
+
